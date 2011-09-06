@@ -30,7 +30,14 @@ public class Phono {
 				onError: function(event) {
 					configuration.@com.google.gwt.phono.client.PhonoConfiguration::_onError(Ljava/lang/String;)(event.reason);
 				}
-			}
+			},
+			
+			// Messaging API configuration
+			messaging: {
+    			onMessage: function(event) {
+    				configuration.@com.google.gwt.phono.client.PhonoConfiguration::_onMessage(Lcom/google/gwt/core/client/JavaScriptObject;)(event.message);
+    			}
+  			}
 		});
 		return phonoObject;
 	}-*/;
@@ -61,5 +68,13 @@ public class Phono {
 	
 	private native JavaScriptObject _getPhone() /*-{
 		return this.@com.google.gwt.phono.client.Phono::obj.phone;
+	}-*/;
+
+	public Messaging getMessaging() {
+		return new Messaging(this._getMessaging());
+	}
+	
+	private native JavaScriptObject _getMessaging() /*-{
+		return this.@com.google.gwt.phono.client.Phono::obj.messaging;
 	}-*/;
 }

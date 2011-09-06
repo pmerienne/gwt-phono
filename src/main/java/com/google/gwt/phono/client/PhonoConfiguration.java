@@ -20,6 +20,12 @@ public class PhonoConfiguration {
 		onIncomingCall(call);
 	}
 
+	void _onMessage(JavaScriptObject obj) {
+		Message message = new Message(obj);
+		log("Message received (from " + message.getFrom() + ") : " + message.getBody());
+		onMessage(message);
+	}
+	
 	void _onError(String reason) {
 		log("Error : " + reason);
 		onError(reason);
@@ -34,6 +40,9 @@ public class PhonoConfiguration {
 	public void onIncomingCall(Call call) {
 	}
 
+	public void onMessage(Message message) {
+	}
+	
 	public void onError(String reason) {
 	}
 	
