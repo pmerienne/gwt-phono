@@ -67,4 +67,21 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>release-repo</id>
+			<url>https://pmerienne@github.com/pmerienne/gwt-phono/raw/master/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshot-repo</id>
+			<url>https://pmerienne@github.com/pmerienne/gwt-phono/raw/master/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<scm>
+		<connection>scm:git:git@github.com:pmerienne/gwt-phono.git</connection>
+		<developerConnection>scm:git:git@github.com:pmerienne/gwt-phono.git</developerConnection>
+		<url>scm:git:git@github.com:pmerienne/gwt-phono.git</url>
+	</scm>
 </project>
