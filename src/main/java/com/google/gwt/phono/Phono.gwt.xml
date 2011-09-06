@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+	<inherits name='com.google.gwt.user.User' />
+
+	<!-- JQuery 1.6.1 -->
+	<script src="http://code.jquery.com/jquery-1.6.1.min.js" />
+	<script src="jquery.phono.js" />
+
+	<source path='client' />
+</module>

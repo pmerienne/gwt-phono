@@ -1,0 +1,3 @@
+gwt-phono is a high level GWT library that turns any web browser into a phone; capable of making phone calls and sending instant messages. You can even connect to SIP clients.
+
+This library is based on the jquery phono Plugin : http://phono.com/
