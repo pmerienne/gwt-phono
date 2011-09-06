@@ -4,7 +4,7 @@
 	<groupId>com.google</groupId>
 	<artifactId>gwt-phono</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.1</version>
+	<version>0.0.2-SNAPSHOT</version>
 
 	<name>GWT Phono</name>
 	<description>Library based on the jquery phono Plugin that turns any web browser into a phone</description>
