@@ -7,8 +7,8 @@
 	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>Jquery phono</name>
-	<description>Wrapper for the jquery phono library</description>
+	<name>GWT Phono</name>
+	<description>Library based on the jquery phono Plugin that turns any web browser into a phone</description>
 	<inceptionYear>2011</inceptionYear>
 
 
