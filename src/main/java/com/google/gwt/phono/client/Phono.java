@@ -22,6 +22,11 @@ public class Phono {
 			
 			// Phone API Configuration
 			phone: {
+				// Default values
+				gain: 100,
+				volume: 100,
+				mute: false,
+				pushToTalk: false,
 				// Event Handlers
 				onIncomingCall: function(event) {
 					configuration.@com.google.gwt.phono.client.PhonoConfiguration::_onIncomingCall(Lcom/google/gwt/core/client/JavaScriptObject;)(event.call);
