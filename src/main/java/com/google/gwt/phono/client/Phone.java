@@ -80,6 +80,20 @@ public class Phone {
     public native boolean getTones() /*-{
     	return this.@com.google.gwt.phono.client.Phone::obj.tones();
      }-*/;
+
+    public native void setRingtone(String _ringtone) /*-{
+		return this.@com.google.gwt.phono.client.Phone::obj.ringtone(_ringtone);
+	}-*/;
     
-    //TODO RINGTONE AND RINGBACKTONE
+    public native String getRingtone() /*-{
+		return this.@com.google.gwt.phono.client.Phone::obj.ringtone();
+	}-*/;
+
+    public native void setRingbacktone(String _ringbacktone) /*-{
+		return this.@com.google.gwt.phono.client.Phone::obj.ringbacktone(_ringbacktone);
+	}-*/;
+
+    public native String getRingbacktone() /*-{
+		return this.@com.google.gwt.phono.client.Phone::obj.ringbacktone();
+	}-*/;
 }
