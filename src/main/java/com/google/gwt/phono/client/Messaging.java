@@ -10,7 +10,7 @@ public class Messaging {
 		this.obj = obj;
 	}
 
-	public native void send(String to, String body) /*-{
+	protected native void send(String to, String body) /*-{
 		this.@com.google.gwt.phono.client.Messaging::obj.send(to, body);
 	}-*/;
 }

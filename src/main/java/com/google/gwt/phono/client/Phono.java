@@ -1,52 +1,78 @@
 package com.google.gwt.phono.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.phono.client.handler.PhonoHandler;
 
 public class Phono {
 
 	private JavaScriptObject obj;
-
-	public Phono(String apiKey, PhonoConfiguration configuration) {
-		this.obj = init(apiKey, configuration);
-	}
 	
-	private native static JavaScriptObject init(String _apiKey, PhonoConfiguration configuration) /*-{
+	private Phone phone;
+	
+	private Messaging messaging;
+	
+	private PhonoHandlerRegistry phonoHandlerRegistry;
+
+	public Phono(String apiKey, PhonoHandler handler) {
+		this.phonoHandlerRegistry = new PhonoHandlerRegistry(this, handler);
+		this.obj = init(apiKey, phonoHandlerRegistry);
+	}
+
+	private native static JavaScriptObject init(String _apiKey, PhonoHandlerRegistry phonoHandlerRegistry) /*-{
+		console.log("Init gwt-phono");
 		var phonoObject = $wnd.$.phono({
 			apiKey: _apiKey,
 			onReady: function() {
-				configuration.@com.google.gwt.phono.client.PhonoConfiguration::_onReady()();
+				phonoHandlerRegistry.@com.google.gwt.phono.client.PhonoHandlerRegistry::onReady()();
 			},
+
 	 		onUnready: function() {
-				configuration.@com.google.gwt.phono.client.PhonoConfiguration::_onUnready()();
+				phonoHandlerRegistry.@com.google.gwt.phono.client.PhonoHandlerRegistry::onUnready()();
 			},
 			
 			// Phone API Configuration
 			phone: {
 				// Default values
-				gain: 100,
-				volume: 100,
-				mute: false,
-				pushToTalk: false,
+				headset: true,
+				tones: false,
 				// Event Handlers
 				onIncomingCall: function(event) {
-					configuration.@com.google.gwt.phono.client.PhonoConfiguration::_onIncomingCall(Lcom/google/gwt/core/client/JavaScriptObject;)(event.call);
+					phonoHandlerRegistry.@com.google.gwt.phono.client.PhonoHandlerRegistry::onIncomingCall(Lcom/google/gwt/core/client/JavaScriptObject;)(event.call);
 				},
-				
+
 				onError: function(event) {
-					configuration.@com.google.gwt.phono.client.PhonoConfiguration::_onError(Ljava/lang/String;)(event.reason);
+					phonoHandlerRegistry.@com.google.gwt.phono.client.PhonoHandlerRegistry::onError(Ljava/lang/String;)(event.reason);
 				}
 			},
 			
 			// Messaging API configuration
 			messaging: {
     			onMessage: function(event) {
-    				configuration.@com.google.gwt.phono.client.PhonoConfiguration::_onMessage(Lcom/google/gwt/core/client/JavaScriptObject;)(event.message);
+    				phonoHandlerRegistry.@com.google.gwt.phono.client.PhonoHandlerRegistry::onMessage(Lcom/google/gwt/core/client/JavaScriptObject;)(event.message);
     			}
   			}
 		});
 		return phonoObject;
 	}-*/;
 	
+	protected void endInitialization() {
+		this.phone = new Phone(this._getPhone());
+		this.phone.setPhonoHandlerRegistry(phonoHandlerRegistry);
+		this.messaging= new Messaging(this._getMessaging());
+	}
+
+	public Call dial(String destination) {
+		return this.dial(destination, new DialConfiguration());
+	}
+
+	public Call dial(String destination, DialConfiguration configuration) {
+		return this.getPhone().dial(destination, configuration);
+	}
+
+	public void send(String destination, String body) {
+		this.getMessaging().send(destination, body);
+	}
+
 	public native String getApiKey() /*-{
 		return this.@com.google.gwt.phono.client.Phono::obj.apiKey;
 	}-*/;
